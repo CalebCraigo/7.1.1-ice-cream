@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
 
-urlpatterns = [
-    path('<int:ice_cream_id>/', views.detail, name='detail'),
-    path('<int:ice_cream_id>/results/', views.results, name='results'),
-    path('', views.index, name='index'),
+app_name = 'ice_cream'
 
+urlpatterns = [
+    path('<str:selection>/', views.index, name='selection'),
+    path('', views.index, name='index'),
 ]
