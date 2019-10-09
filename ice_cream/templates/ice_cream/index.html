@@ -1,0 +1,28 @@
+{% extends 'ice_cream/base.html'%}
+
+{% block nav %}
+{% endblock nav %}
+
+{% block content %}
+  {% for option in availability %}
+    <a href="{% url 'ice_cream:selection' option %}"><span>{{option.capitalize}}</span></a>
+  {% endfor %}
+{% if ice_cream_list %}
+    {% for ice_cream in ice_cream_list %}
+<form action='{% url "ice_cream:vote" ice_cream.id %}' method='post'>
+    {% csrf_token %}
+  <a for='choice{{forloop.counter}}'>{{ice_cream.flavor}}</a>
+    <input type='submit' name='choice' id='choice{{ forloop.counter }}' value='Like'>
+</form>
+<form action="{% url 'ice_cream:icecream_delete' ice_cream.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>
+  {% endfor %}
+{% else %}
+
+  <p>No Ice Cream For You!</p>
+
+{% endif %}
+
+{% endblock %}

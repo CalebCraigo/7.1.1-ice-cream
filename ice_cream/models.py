@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 class Icecream(models.Model):
 
@@ -21,17 +22,13 @@ class Icecream(models.Model):
     featured = models.BooleanField(default=False)
     date_churned = models.DateTimeField('Date Churned', default=timezone.now)
 
+    likes = models.IntegerField(default=0)
+
     def __str__(self):
         return self.flavor
 
-# class Option(models.Model):
-#     options = models.ForeignKey(Icecream, on_delete=models.CASCADE)
-#     choices_text = models.CharField(max_length=200)
-#     featured = models.BooleanField(default= False)
-#     pud_date = models.DateTimeField('Date Churned', default=timezone.now)
-#
-#     def __str__(self):
-#         return self.choices_text
+    def get_absolute_url(self):
+        return reverse('ice_cream:index')
 
 
 # Create your models here.

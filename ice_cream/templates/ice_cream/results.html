@@ -1,0 +1,16 @@
+{% extends 'ice_cream/base.html' %}
+
+{% block nav %}
+{% endblock nav %}
+
+{% block content %}
+  {% for option in availability %}
+    <a href="{% url 'ice_cream:selection' option %}"><span>{{option.capitalize}}</span></a>
+  {% endfor %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+    <p>{{ice_cream.flavor}}<span>: {{ice_cream.likes}}</span><p>
+
+{% endblock %}
