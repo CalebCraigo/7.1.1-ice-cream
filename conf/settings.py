@@ -25,7 +25,7 @@ SECRET_KEY = 'q9!#q30lm3^*u3$bi1slp34_@gf83t02-pxeqt_@-u!i#9h(gq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,12 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'ice_cream',
+
+    #local
+    'ice_cream.apps.IceCreamConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -119,3 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICEFILES_STORAGE = 'whitenoice.storage.CompressedManifestStaticFilesStorage'
+
+LOGIN_REDIRECT_URL ='/ice_cream/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
