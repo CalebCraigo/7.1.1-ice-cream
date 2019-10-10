@@ -11,13 +11,13 @@ def index(request, selection=None):
     # ice_cream = Icecream.objects.all()
     # ice_cream = [d['available'] for d in ice_cream]
     # print(ice_cream)
-    availability = ['Home','featured','weekly', 'daily', 'seasonal']
+    availability = ['featured','weekly', 'daily', 'seasonal']
 
     if selection == None:
         ice_cream_list = Icecream.objects.all()
 
-    elif selection == 'Home':
-        ice_cream_list = Icecream.objects.all()
+    # elif selection == 'Home':
+    #     ice_cream_list = Icecream.objects.all()
 
     elif selection == 'featured':
         ice_cream_list = Icecream.objects.filter(featured=True)
