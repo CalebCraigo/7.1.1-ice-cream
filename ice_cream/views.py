@@ -54,8 +54,8 @@ class CreateView(generic.CreateView):
 def icecream_delete(request, pk):
     ice_cream = get_object_or_404(Icecream, pk=pk)
 
-    if request.method == 'POST':
-        ice_cream.delete()
-        return redirect(reverse_lazy('ice_cream:index'))
+    # if request.method == 'POST':
+    ice_cream.delete()
+    return redirect(reverse_lazy('ice_cream:index'))
 
-    return render(request, 'base.html', {'ice_cream': ice_cream})
+    # return render(request, 'base.html', {'ice_cream': ice_cream})

@@ -14,10 +14,13 @@
   <a for='choice{{forloop.counter}}'>{{ice_cream.flavor}}</a>
     <input type='submit' name='choice' id='choice{{ forloop.counter }}' value='Like'>
 </form>
-<form action="{% url 'ice_cream:icecream_delete' ice_cream.id %}" method="post">
+
+<a href="{% url 'ice_cream:icecream_delete' ice_cream.id %}">Delete</a>
+
+<!-- <form action="{% url 'ice_cream:icecream_delete' ice_cream.id %}" method="post">
     {% csrf_token %}
     <input type="submit" value="Delete">
-</form>
+</form> -->
   {% endfor %}
 {% else %}
 
